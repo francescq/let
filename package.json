@@ -6,27 +6,53 @@
   "repository": "",
   "author": "",
   "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
     "standard": "standard"
   },
-  "pre-commit": [
-    "standard"
-  ],
+  "husky": {
+    "hooks": {
+        "pre-commit": "standard && npm test"
+    }
+  },
   "dependencies": {
+    "axios": "^0.18.0",
+    "css-loader": "^2.1.1",
+    "node-sass": "^4.12.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ],
+    "parser": "babel-eslint"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "eslint-plugin-jest": "^22.5.1",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^2.1.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.7.1",
     "pre-commit": "^1.2.2",
     "standard": "^12.0.1",
     "webpack": "^4.29.5",
