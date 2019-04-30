@@ -1,0 +1,32 @@
+$square: calc(45%);
+
+.button {
+    width:45%; height:200px; margin:4px; border:1px solid black; float: left;
+    border: 2px solid white;
+
+    &.green {
+        background-color: #21c403
+    }
+
+    &.red {
+        background-color: #ff0000
+    }
+    
+    &.yellow {
+        background-color: #fbff00
+    }
+    
+    &.blue {
+        background-color: #2600ff
+    }
+
+    &.focus {
+        background-color: white
+       
+    }
+    
+}
+
+
+
+

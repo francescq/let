@@ -26,9 +26,10 @@ export class GameLayout extends React.Component {
   }
 
   renderGame () {
+    console.log('renderGame')
     return (
       <React.Fragment>
-        <Game game={this.props.game} play={this.play} />
+        <Game game={this.props.game} play={this.play} key={Math.random()} />
         <Controls />
       </React.Fragment>
     )

@@ -7,41 +7,56 @@ export class Game extends React.Component {
 
   componentDidMount () {
     this.setState({ moves: this.props.game })
+
+    if (this.props.game.length > 0) {
+      this.showNextMove()
+    }
   }
 
-  playNextMove = () => {}
+  popState = () => {
+    const popMoves = this.state.moves.slice()
+    popMoves.shift()
+    this.setState({ moves: popMoves })
+  }
+
+  showNextMove = () => {
+    let timer = setInterval(() => {
+      this.popState()
+      if (this.state.moves.length === 0) {
+        clearInterval(timer)
+      }
+    }, 300)
+  }
 
   getActiveButton = () => {
-    console.log(this)
-    return this.state.moves.slice().pop()
+    return this.state.moves.slice()[0]
   }
 
   render () {
-    console.log(this.props)
     const activeButton = this.getActiveButton()
     return (
       <div gane='game'>
         <div>Simon</div>
         <SimonButton
-          play='2'
+          play={1}
           onClick={this.props.play}
           active={activeButton}
           className='button green'
         />
         <SimonButton
-          play='2'
+          play={2}
           onClick={this.props.play}
           active={activeButton}
           className='button red'
         />
         <SimonButton
-          play='3'
+          play={3}
           onClick={this.props.play}
           active={activeButton}
           className='button yellow'
         />
         <SimonButton
-          play='4'
+          play={4}
           onClick={this.props.play}
           active={activeButton}
           className='button blue'
