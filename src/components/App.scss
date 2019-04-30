@@ -1,0 +1,12 @@
+@import 'variables';
+
+.game-container {
+    background-color: $background-color;
+    height: 100vh;
+    width: 100%;
+}
+
+body {
+    display: block;
+    margin: 0;
+}
