@@ -25,7 +25,7 @@ export class Game extends React.Component {
       if (this.state.moves.length === 0) {
         clearInterval(timer)
       }
-    }, 300)
+    }, 1000)
   }
 
   getActiveButton = () => {
@@ -33,6 +33,7 @@ export class Game extends React.Component {
   }
 
   render () {
+    // console.log(this.state.moves)
     const activeButton = this.getActiveButton()
     return (
       <div gane='game'>
