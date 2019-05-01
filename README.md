@@ -60,8 +60,9 @@ Compress your solution (without the `/node_modules` and `/build` folders) and se
 ## Running the project
  * Install: `npm install`
  * Test: `npm test`
+ * Lint the project: `npm run lint`
  * Launch dev mode `npm start`
- * Build prod mode `npm run build`
+ * Build production mode `npm run build`
  * Execute production mode `node server.js`
 
 Used Husky to help linting and testing each commit
