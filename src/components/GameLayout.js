@@ -5,7 +5,7 @@ import Controls from './Controls'
 import Game from './Game'
 import Header from './Header'
 import { restart, validate } from '../store/actions'
-import { DEFEAT, PLAY, VICTORY } from '../store/actions/gameStates'
+import { DEFEAT, GAME, VICTORY } from '../store/actions/gameStates'
 
 import './GameLayout.scss'
 
@@ -22,8 +22,10 @@ export class GameLayout extends React.Component {
   renderDefeat () {
     this.sounds.defeat.play()
     return (
-      <div>
-        <div className='game-defeat'>Wrong!!!</div>
+      <div className='game-end'>
+        <div className='game-defeat'>
+          <span className='message'>Wrong!!!</span>
+        </div>
       </div>
     )
   }
@@ -31,8 +33,10 @@ export class GameLayout extends React.Component {
   renderVictory () {
     this.sounds.victory.play()
     return (
-      <div>
-        <div className='game-victory'>Wrong!!!</div>
+      <div className='game-end'>
+        <div className='game-victory'>
+          <span className='message'>Victory!!!</span>
+        </div>
       </div>
     )
   }
@@ -52,7 +56,7 @@ export class GameLayout extends React.Component {
     switch (this.props.valid) {
       case DEFEAT:
         return this.renderDefeat()
-      case PLAY:
+      case GAME:
         return this.renderGame()
       case VICTORY:
         return this.renderVictory()

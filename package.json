@@ -8,6 +8,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
+    "lint": "standard",
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
     "standard": "standard"
@@ -20,7 +21,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "css-loader": "^2.1.1",
-    "lodash": "^4.17.11",
     "node-sass": "^4.12.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",

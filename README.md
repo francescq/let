@@ -48,5 +48,21 @@ Compress your solution (without the `/node_modules` and `/build` folders) and se
 * Install the dependencies by running `yarn install`
 * Launch dev server by running `yarn start`
 * To create the production bundle just run `yarn build`
+  
+# Francesc Quiñones 
+##Technologies:
+* React, Redux, Thunk
+* Jest, Enzyme, Sinon
+* Sass
+* Axios
+* Husky, Standard, Eslint integration, Prettier - Standard
 
-If for your final solution we need to run something else (like `yarn test` for unit testing for example) please add it here :)
+## Running the project
+ * Install: `npm install`
+ * Test: `npm test`
+ * Launch dev mode `npm start`
+ * Build prod mode `npm run build`
+ * Execute production mode `node server.js`
+
+Used Husky to help linting and testing each commit
+

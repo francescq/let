@@ -1,11 +1,33 @@
-.game-defeat{
+.game-end{
+    height:65vh;
     width: 100%;
-    height: 100%;
-    background-color: crimson
-}
+    
+    .game-defeat{
+        height:65vh;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        background-color: crimson
+    }
 
-.game-victory {
-    width: 100%;
-    height: 100%;
-    background-color: yellowgreen
+    .game-victory {
+        height:65vh;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+            background-color: yellowgreen
+    }
+
+    .message {
+        color: white;
+        font-weight: bold;
+        order: 0;
+        align-self: auto;
+    }
 }
