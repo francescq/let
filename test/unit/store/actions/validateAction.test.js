@@ -1,5 +1,5 @@
-import configureStore from 'redux-mock-store'
 /* eslint no-unused-vars: 0 */
+import configureStore from 'redux-mock-store'
 import { mockStore } from '../../../utils/mockStore'
 import thunk from 'redux-thunk'
 import { VALIDATE } from '../../../../src/store/actions/types'
