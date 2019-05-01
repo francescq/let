@@ -1,9 +1,11 @@
 import { PLAY, RESTART } from '../actions/types'
+import RandomGenerator from './utils/RandomGenerator'
 
 const initialGame = []
 
 const nextPlay = () => {
-  return Math.floor(Math.random() * 4) + 1
+  const ran = new RandomGenerator()
+  return ran.random(4)
 }
 
 export const gameReducer = (game = initialGame, action) => {

@@ -1,4 +1,4 @@
-import { PLAY, RESTART, VALIDATE } from './types'
+import { PLAY, RESTART, VALIDATE, SET_TURN } from './types'
 import '@babel/polyfill'
 
 export const play = playArray => async dispatch => {
@@ -16,11 +16,20 @@ export const restart = () => {
   }
 }
 
-export const validate = gameAndPlays => async dispatch => {
+export const validate = gameAndPlays => async (dispatch, getState) => {
   console.log('validate')
+
+  gameAndPlays.turn = getState().turn
 
   return dispatch({
     type: VALIDATE,
     payload: gameAndPlays
   })
+}
+
+export const setTurns = turns => {
+  return {
+    type: SET_TURN,
+    payload: turns
+  }
 }

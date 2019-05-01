@@ -1,7 +1,7 @@
 import React from 'react'
 import SimonButton from './SimonButton'
 import { connect } from 'react-redux'
-import { validate } from '../store/actions'
+import { validate, play } from '../store/actions'
 import './Game.scss'
 
 export class Game extends React.Component {
@@ -24,6 +24,7 @@ export class Game extends React.Component {
 
     if (this.round.length === this.props.game.length) {
       this.props.play(this.round)
+      this.props.validate({ game: this.props.game, plays: this.round })
     }
   }
 
@@ -86,5 +87,5 @@ export class Game extends React.Component {
 
 export default connect(
   null,
-  { validate }
+  { validate, play }
 )(Game)

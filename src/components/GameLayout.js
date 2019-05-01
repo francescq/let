@@ -4,28 +4,35 @@ import { connect } from 'react-redux'
 import Controls from './Controls'
 import Game from './Game'
 import Header from './Header'
-import { restart, play, validate } from '../store/actions'
+import { restart, validate } from '../store/actions'
+import { DEFEAT, PLAY, VICTORY } from '../store/actions/gameStates'
+
 import './GameLayout.scss'
 
 export class GameLayout extends React.Component {
   sounds = {
-    wrong: new Audio('http://soundbible.com/grab.php?id=1129&type=mp3'),
-    success: new Audio('http://soundbible.com/grab.php?id=1964&type=mp3')
+    defeat: new Audio('http://soundbible.com/grab.php?id=1129&type=mp3'),
+    victory: new Audio('http://soundbible.com/grab.php?id=1964&type=mp3')
   }
 
   componentDidMount () {
     this.props.restart()
   }
 
-  play = play => {
-    this.props.play(play)
-  }
-
-  renderFail () {
-    this.sounds.wrong.play()
+  renderDefeat () {
+    this.sounds.defeat.play()
     return (
       <div>
-        <div className='game-fail'>Wrong!!!</div>
+        <div className='game-defeat'>Wrong!!!</div>
+      </div>
+    )
+  }
+
+  renderVictory () {
+    this.sounds.victory.play()
+    return (
+      <div>
+        <div className='game-victory'>Wrong!!!</div>
       </div>
     )
   }
@@ -35,7 +42,6 @@ export class GameLayout extends React.Component {
     return (
       <Game
         game={this.props.game}
-        play={this.play}
         key={Math.random()}
         items={this.props.items}
       />
@@ -43,10 +49,28 @@ export class GameLayout extends React.Component {
   }
 
   render () {
-    const content = this.props.valid ? this.renderGame() : this.renderFail()
+    let content
+    switch (this.props.valid) {
+      case DEFEAT:
+        content = this.renderDefeat()
+        break
+      case PLAY:
+        content = this.renderGame()
+        break
+      case VICTORY:
+        content = this.renderVictory()
+        break
+      default:
+        content = this.renderGame()
+    }
+
     return (
       <React.Fragment>
-        <Header valid={this.props.valid} hero={this.props.items[1][0]} />
+        <Header
+          turn={this.props.turn}
+          valid={this.props.valid}
+          hero={this.props.items[1][0]}
+        />
         {content}
         <Controls />
       </React.Fragment>
@@ -58,11 +82,12 @@ const map = state => {
   return {
     game: state.game,
     items: state.items,
-    valid: state.valid
+    valid: state.valid,
+    turn: state.turn
   }
 }
 
 export default connect(
   map,
-  { restart, play, validate }
+  { restart, validate }
 )(GameLayout)

@@ -4,6 +4,10 @@ $square: calc(45%);
     width:45%; height:200px; margin:4px; border:1px solid black; float: left;
     border: 2px solid white;
 
+    &:hover {
+        cursor: pointer;
+    }
+
     &.green {
         background-color: #21c403
     }
@@ -24,7 +28,6 @@ $square: calc(45%);
         background-color: white
        
     }
-    
 }
 
 
