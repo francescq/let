@@ -50,7 +50,7 @@ Compress your solution (without the `/node_modules` and `/build` folders) and se
 * To create the production bundle just run `yarn build`
   
 # Francesc Quiñones 
-##Technologies:
+## Technologies:
 * React, Redux, Thunk
 * Jest, Enzyme, Sinon
 * Sass
