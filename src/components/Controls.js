@@ -14,7 +14,7 @@ export class Controls extends React.Component {
         Controls
         <button onClick={this.restart}>Restart</button>
         <div>Current turn {this.props.plays.length}</div>
-        <div>Next play {this.props.game.slice().pop()}</div>
+        <div>Next play {this.props.game.slice().toString()}</div>
         <div>Valid {this.props.valid.toString()}</div>
       </div>
     )

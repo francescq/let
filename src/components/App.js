@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { loadItems } from '../store/actions'
+import { loadItems } from '../store/actions/loadItems'
 import GameLayout from './GameLayout'
 import './App.scss'
 
@@ -12,7 +12,7 @@ export class App extends React.Component {
   returnLoadingState () {
     return (
       <div app-loading='true' className='app-loading'>
-        Loading
+        Loading images...
       </div>
     )
   }

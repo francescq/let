@@ -3,7 +3,7 @@ import { VALIDATE, RESTART } from '../../store/actions/types'
 const checkGame = ({ plays, game }) => {
   const previousGame = game.slice(0, -1)
 
-  console.log(JSON.stringify(plays), JSON.stringify(previousGame))
+  // console.log(JSON.stringify(plays), JSON.stringify(previousGame))
   return JSON.stringify(plays) === JSON.stringify(previousGame)
 }
 

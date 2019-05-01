@@ -4,6 +4,7 @@ import './Game.scss'
 
 export class Game extends React.Component {
   state = { moves: [] }
+  round = []
 
   componentDidMount () {
     this.setState({ moves: this.props.game })
@@ -13,7 +14,15 @@ export class Game extends React.Component {
     }
   }
 
-  popState = () => {
+  playRound = e => {
+    this.round.push(parseInt(e.target.getAttribute('play')))
+
+    if (this.round.length === this.props.game.length) {
+      this.props.play(this.round)
+    }
+  }
+
+  shiftMovement = () => {
     const popMoves = this.state.moves.slice()
     popMoves.shift()
     this.setState({ moves: popMoves })
@@ -21,7 +30,7 @@ export class Game extends React.Component {
 
   showNextMove = () => {
     let timer = setInterval(() => {
-      this.popState()
+      this.shiftMovement()
       if (this.state.moves.length === 0) {
         clearInterval(timer)
       }
@@ -35,31 +44,35 @@ export class Game extends React.Component {
   render () {
     // console.log(this.state.moves)
     const activeButton = this.getActiveButton()
+    console.log(this.props)
     return (
-      <div gane='game'>
-        <div>Simon</div>
+      <div game='game' className='game'>
         <SimonButton
           play={1}
-          onClick={this.props.play}
+          onClick={this.playRound}
           active={activeButton}
+          avatar={this.props.items[0][0]}
           className='button green'
         />
         <SimonButton
           play={2}
-          onClick={this.props.play}
+          onClick={this.playRound}
           active={activeButton}
+          avatar={this.props.items[0][1]}
           className='button red'
         />
         <SimonButton
           play={3}
-          onClick={this.props.play}
+          onClick={this.playRound}
           active={activeButton}
+          avatar={this.props.items[0][2]}
           className='button yellow'
         />
         <SimonButton
           play={4}
-          onClick={this.props.play}
+          onClick={this.playRound}
           active={activeButton}
+          avatar={this.props.items[0][3]}
           className='button blue'
         />
       </div>

@@ -2,6 +2,9 @@ import React from 'react'
 import './SimonButton.scss'
 
 export class SimonButton extends React.Component {
+  button = React.createRef()
+  avatar = React.createRef()
+
   sounds = {
     1: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3'),
     2: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3'),
@@ -9,34 +12,52 @@ export class SimonButton extends React.Component {
     4: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3')
   }
 
-  button = React.createRef()
-
-  isActive () {
+  isActive = () => {
+    console.log(this.props.play, this.props.active)
     return this.props.play === this.props.active
   }
 
   removeFocus = () => {
-    // console.log('removeFocus', this.props.className)
     this.button.current.className = this.props.className
+    this.avatar.current.src = this.props.avatar.avatar
+  }
+
+  getFocusClass () {
+    return this.props.className + ' focus'
+  }
+
+  setFocus = () => {
+    this.sounds[this.props.play].play()
+    this.button.current.className = this.getFocusClass()
+    this.avatar.current.src = this.props.avatar.avatar_shiny
+  }
+
+  onClick = e => {
+    this.sounds[this.props.play].play()
+    this.setFocus()
+    setTimeout(this.removeFocus, 300)
+    this.props.onClick(e)
   }
 
   render () {
-    let { className, play, onClick } = this.props
+    let { play, avatar } = this.props
+    let clazz = this.props.className
 
+    let myAvatar = avatar.avatar
     if (this.isActive()) {
-      className += ' focus'
-      this.timer = setTimeout(this.removeFocus(), 300)
-      this.sounds[play].play()
+      clazz = this.getFocusClass()
+      myAvatar = avatar.avatar_shiny
+      this.sounds[this.props.play].play()
     }
-    // console.log('button render', className)
+
     return (
       <div
         play={play}
         ref={this.button}
-        onClick={onClick}
-        className={className}
+        onClick={this.onClick}
+        className={clazz}
       >
-        Button
+        <img ref={this.avatar} src={myAvatar} />
       </div>
     )
   }
