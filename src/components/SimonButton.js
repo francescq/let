@@ -13,7 +13,6 @@ export class SimonButton extends React.Component {
   }
 
   isActive = () => {
-    console.log(this.props.play, this.props.active)
     return this.props.play === this.props.active
   }
 

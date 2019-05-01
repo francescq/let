@@ -16,15 +16,11 @@ export const restart = () => {
   }
 }
 
-export const validate = () => async (dispatch, getState) => {
+export const validate = gameAndPlays => async dispatch => {
   console.log('validate')
-  const state = {
-    game: getState().game,
-    plays: getState().plays
-  }
 
   return dispatch({
     type: VALIDATE,
-    payload: state
+    payload: gameAndPlays
   })
 }

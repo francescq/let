@@ -19,7 +19,6 @@ export class GameLayout extends React.Component {
 
   play = play => {
     this.props.play(play)
-    this.props.validate()
   }
 
   renderFail () {
