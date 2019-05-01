@@ -31,7 +31,7 @@ describe('<App />', () => {
   })
 
   describe('game state', () => {
-    it('should render the game', () => {
+    it('should render the game layout', () => {
       const game = wrapper.find(GameLayout)
 
       expect(game.length).toEqual(1)

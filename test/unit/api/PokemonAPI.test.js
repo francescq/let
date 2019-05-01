@@ -16,10 +16,17 @@ describe('PokemonAPI', () => {
     api = new PokemonAPI(axiosStub)
   })
 
-  it('should get pokemons', () => {
+  it('should fetch pokemons', () => {
     api.fetch('foo')
 
     expect(axiosStub.get).toHaveBeenCalledTimes(1)
     expect(axiosStub.get).toHaveBeenCalledWith('/api/v2/pokemon?limit=foo')
+  })
+
+  it('should get the given url', () => {
+    api.get('url')
+
+    expect(axiosStub.get).toHaveBeenCalledTimes(1)
+    expect(axiosStub.get).toHaveBeenCalledWith('url')
   })
 })

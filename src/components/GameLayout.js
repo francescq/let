@@ -48,30 +48,24 @@ export class GameLayout extends React.Component {
     )
   }
 
-  render () {
-    let content
+  _getContent = () => {
     switch (this.props.valid) {
       case DEFEAT:
-        content = this.renderDefeat()
-        break
+        return this.renderDefeat()
       case PLAY:
-        content = this.renderGame()
-        break
+        return this.renderGame()
       case VICTORY:
-        content = this.renderVictory()
-        break
+        return this.renderVictory()
       default:
-        content = this.renderGame()
+        return this.renderGame()
     }
+  }
 
+  render () {
     return (
       <React.Fragment>
-        <Header
-          turn={this.props.turn}
-          valid={this.props.valid}
-          hero={this.props.items[1][0]}
-        />
-        {content}
+        <Header />
+        {this._getContent()}
         <Controls />
       </React.Fragment>
     )
@@ -80,10 +74,7 @@ export class GameLayout extends React.Component {
 
 const map = state => {
   return {
-    game: state.game,
-    items: state.items,
-    valid: state.valid,
-    turn: state.turn
+    valid: state.valid
   }
 }
 

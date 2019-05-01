@@ -7,6 +7,12 @@ import './Game.scss'
 export class Game extends React.Component {
   state = { moves: [] }
   round = []
+  sounds = {
+    1: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3'),
+    2: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3'),
+    3: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3'),
+    4: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3')
+  }
 
   componentDidMount () {
     this.setState({ moves: this.props.game })
@@ -23,8 +29,10 @@ export class Game extends React.Component {
     this.props.validate({ game: currentGame, plays: this.round })
 
     if (this.round.length === this.props.game.length) {
-      this.props.play(this.round)
-      this.props.validate({ game: this.props.game, plays: this.round })
+      setTimeout(() => {
+        this.props.play(this.round)
+        this.props.validate({ game: this.props.game, plays: this.round })
+      }, 1000)
     }
   }
 
@@ -58,6 +66,7 @@ export class Game extends React.Component {
           active={activeButton}
           avatar={this.props.items[0][0]}
           className='button green'
+          sounds={this.sounds}
         />
         <SimonButton
           play={2}
@@ -65,6 +74,7 @@ export class Game extends React.Component {
           active={activeButton}
           avatar={this.props.items[0][1]}
           className='button red'
+          sounds={this.sounds}
         />
         <SimonButton
           play={3}
@@ -72,6 +82,7 @@ export class Game extends React.Component {
           active={activeButton}
           avatar={this.props.items[0][2]}
           className='button yellow'
+          sounds={this.sounds}
         />
         <SimonButton
           play={4}
@@ -79,13 +90,20 @@ export class Game extends React.Component {
           active={activeButton}
           avatar={this.props.items[0][3]}
           className='button blue'
+          sounds={this.sounds}
         />
       </div>
     )
   }
 }
 
+const map = state => {
+  return {
+    game: state.game
+  }
+}
+
 export default connect(
-  null,
+  map,
   { validate, play }
 )(Game)
