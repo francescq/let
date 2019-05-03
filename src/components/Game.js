@@ -51,6 +51,10 @@ export class Game extends React.Component {
     }, 1000)
   }
 
+  isButtonActive (play, active) {
+    return play === active
+  }
+
   getActiveButton = () => {
     return this.state.moves.slice()[0]
   }
@@ -62,32 +66,32 @@ export class Game extends React.Component {
       <div game='game' className='game'>
         <SimonButton
           play={1}
+          isActive={this.isButtonActive(1, activeButton)}
           onClick={this.playRound}
-          active={activeButton}
           avatar={this.props.items[0][0]}
           className='button green'
           sounds={this.sounds}
         />
         <SimonButton
           play={2}
+          isActive={this.isButtonActive(2, activeButton)}
           onClick={this.playRound}
-          active={activeButton}
           avatar={this.props.items[0][1]}
           className='button red'
           sounds={this.sounds}
         />
         <SimonButton
           play={3}
+          isActive={this.isButtonActive(3, activeButton)}
           onClick={this.playRound}
-          active={activeButton}
           avatar={this.props.items[0][2]}
           className='button yellow'
           sounds={this.sounds}
         />
         <SimonButton
           play={4}
+          isActive={this.isButtonActive(4, activeButton)}
           onClick={this.playRound}
-          active={activeButton}
           avatar={this.props.items[0][3]}
           className='button blue'
           sounds={this.sounds}

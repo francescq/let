@@ -2,44 +2,40 @@ import React from 'react'
 import './SimonButton.scss'
 
 export class SimonButton extends React.Component {
-  button = React.createRef()
-  avatar = React.createRef()
-
-  isActive = () => {
-    return this.props.play === this.props.active
-  }
-
-  removeFocus = () => {
-    this.button.current.className = this.props.className
-    this.avatar.current.src = this.props.avatar.avatar
+  constructor (props) {
+    super(props)
+    this.state = {
+      isActive: props.isActive
+    }
   }
 
   getFocusClass () {
     return this.props.className + ' focus'
   }
 
-  setFocus = () => {
+  playSound = () => {
     this.props.sounds[this.props.play].play()
-    this.button.current.className = this.getFocusClass()
-    this.avatar.current.src = this.props.avatar.avatar_shiny
   }
 
   onClick = e => {
-    this.props.sounds[this.props.play].play()
-    this.setFocus()
-    setTimeout(this.removeFocus, 300)
+    this.playSound()
+    this.setState({ isActive: true })
+    setTimeout(() => {
+      this.setState({ isActive: false })
+    }, 300)
     this.props.onClick(e)
   }
 
   render () {
-    let { play, avatar, sounds } = this.props
+    let { play, avatar } = this.props
     let clazz = this.props.className
 
     let myAvatar = avatar.avatar
-    if (this.isActive()) {
-      clazz = this.getFocusClass()
-      myAvatar = avatar.avatar_shiny
-      sounds[play].play()
+
+    if (this.state.isActive) {
+      this.playSound()
+      clazz += this.getFocusClass()
+      myAvatar = this.props.avatar.avatar_shiny
     }
 
     return (

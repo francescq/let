@@ -12,7 +12,7 @@ describe('SimonButton', () => {
         avatar: 'myAvatar',
         avatar_shiny: 'myShinyAvatar'
       },
-      active: 1,
+      isActive: 0,
       play: 2,
       sounds: {
         1: { play: jest.fn() }
@@ -29,7 +29,7 @@ describe('SimonButton', () => {
 
   describe('focus', () => {
     beforeEach(() => {
-      props.active = 1
+      props.isActive = 1
       props.play = 1
 
       wrapper = shallow(<SimonButton {...props} />)
